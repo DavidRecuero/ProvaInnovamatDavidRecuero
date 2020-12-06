@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 
@@ -14,8 +13,8 @@ public class MinigamesManagerParent : MonoBehaviour
     [SerializeField] protected Button[] AnswerButtons;
 
     [Header("Counters")]
-    [SerializeField] protected TextMeshProUGUI Correct;
-    [SerializeField] protected TextMeshProUGUI Wrong;
+    [SerializeField] protected Text Correct;
+    [SerializeField] protected Text Wrong;
                      protected int _mistakes = 0;
                      protected int _corrects = 0;
 

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 //Class to manage some useful parameters of the answer buttons
 class ThisMinigameButton
@@ -35,7 +34,7 @@ public class ThisMinigameManager : MinigamesManagerParent
         base.Start();
 
         QuestionNumber = RandomDictionaryElement(NumberAndWordSO.dictionary);
-        Question.GetComponent<TextMeshProUGUI>().text = NumberAndWordSO.dictionary[QuestionNumber];
+        Question.GetComponent<Text>().text = NumberAndWordSO.dictionary[QuestionNumber];
 
         ThisMinigameAnswerGenerator();
 
@@ -53,11 +52,9 @@ public class ThisMinigameManager : MinigamesManagerParent
         ThisMinigameButtons = new List<ThisMinigameButton>();
 
         QuestionNumber = RandomDictionaryElement(NumberAndWordSO.dictionary);
-        Question.GetComponent<TextMeshProUGUI>().text = NumberAndWordSO.dictionary[QuestionNumber];
+        Question.GetComponent<Text>().text = NumberAndWordSO.dictionary[QuestionNumber];
 
         ThisMinigameAnswerGenerator();
-
-        finiteStateMachine.ChangeState(new QuestionState(this));
     }
 
     //Generates the buttons and their answer options. Doesnt repeat options.
@@ -74,7 +71,7 @@ public class ThisMinigameManager : MinigamesManagerParent
                 var thisMinigameButton = new ThisMinigameButton(button, true);
 
                 button.onClick.AddListener(() => OnCorrectAnswer(thisMinigameButton));
-                button.GetComponentInChildren<TextMeshProUGUI>().text = QuestionNumber.ToString();
+                button.GetComponentInChildren<Text>().text = QuestionNumber.ToString();
 
                 ThisMinigameButtons.Add(thisMinigameButton);
             }
@@ -90,14 +87,13 @@ public class ThisMinigameManager : MinigamesManagerParent
                 while (randomWrongNumber == QuestionNumber || randomWrongNumber == falseAnswer);
 
                 falseAnswer = randomWrongNumber;
-                button.GetComponentInChildren<TextMeshProUGUI>().text = randomWrongNumber.ToString();
+                button.GetComponentInChildren<Text>().text = randomWrongNumber.ToString();
 
                 ThisMinigameButtons.Add(thisMinigameButton);
             }
 
             //The colour of the button is setted as its default colour
             button.GetComponent<Image>().color = _standardAnswerColor;
-
 
             //Buttons not interactables until in animation has ended
             button.interactable = false;
